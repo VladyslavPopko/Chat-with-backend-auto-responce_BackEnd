@@ -67,4 +67,9 @@ router.post('/chats', async (req: Request<{}, {}, IUserId>, res: Response) => {
 	})
 })
 
+router.post('/find', async (req: Request<{}, {}, IUserId>, resp: Response) => {
+	const user = await userService.getUser(req.body.id)
+	return resp.status(200).json(user)
+})
+
 export const userRouter = router

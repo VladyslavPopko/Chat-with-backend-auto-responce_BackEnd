@@ -16,6 +16,7 @@ export class ChatService {
 			},
 			include: {
 				chatUsers: true,
+				messages: true,
 			},
 		})
 	}

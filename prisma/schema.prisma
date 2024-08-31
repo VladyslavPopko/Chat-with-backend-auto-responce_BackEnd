@@ -38,7 +38,7 @@ model Message {
   senderId        String
   recipientId     String
   chatId          String
-  isRead            Boolean
+  isRead            Boolean @default(false)
   
   sender          User      @relation("SentMessages", fields: [senderId], references: [id])
   recipient       User      @relation("ReceivedMessages", fields: [recipientId], references: [id])
