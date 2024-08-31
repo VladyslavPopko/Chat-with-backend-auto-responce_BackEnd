@@ -9,4 +9,35 @@ export class MessageService {
 			data: message,
 		})
 	}
+
+	updateMessage(id: string, message: IMessage): Promise<Message> {
+		return this.prisma.message.update({
+			where: {
+				id: id,
+			},
+			data: {
+				text: message.text,
+				updatedAt: new Date(),
+			},
+		})
+	}
+
+	updateMessageRead(id: string, isRead: boolean): Promise<Message> {
+		return this.prisma.message.update({
+			where: {
+				id: id,
+			},
+			data: {
+				isRead: isRead,
+			},
+		})
+	}
+
+	deleteMessage(id: string): Promise<Message> {
+		return this.prisma.message.delete({
+			where: {
+				id: id,
+			},
+		})
+	}
 }

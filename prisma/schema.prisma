@@ -26,8 +26,6 @@ model User {
 model Chat {
   id              String     @id @default(cuid()) @map("_id")
   messages        Message[]  @relation("ChatMessages")
-  lastMessageId   String?    @unique 
-
   createdAt       DateTime   @default(now()) @map("created_at")
   updatedAt       DateTime   @updatedAt @map("updated_at")
   chatUsers       ChatUser[] 
@@ -39,7 +37,7 @@ model Message {
   senderId        String
   recipientId     String
   chatId          String
-  read            Boolean
+  isRead            Boolean
   
   sender          User      @relation("SentMessages", fields: [senderId], references: [id])
   recipient       User      @relation("ReceivedMessages", fields: [recipientId], references: [id])

@@ -3,5 +3,15 @@ export interface IMessage {
 	senderId: string
 	recipientId: string
 	chatId: string
-	read: boolean
+	isRead: boolean
+}
+
+export interface IMessageId {
+	id: string
+}
+
+export interface IUpdateMessage extends IMessage, IMessageId {}
+
+export interface IUpdateMessageRead extends IMessageId {
+	isRead: boolean
 }
