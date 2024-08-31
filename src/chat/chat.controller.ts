@@ -1,15 +1,18 @@
 import { Request, Response, Router } from 'express'
 import { ChatService } from './chat.service'
-import { IAddUsersToChat, IChatId } from './chat.types'
+import { IAddUsersToChat, IChatId, IChatNew } from './chat.types'
 
 const router = Router()
 
 const chatService = new ChatService()
 
-router.post('/create', async (req: Request, res: Response) => {
-	const chat = await chatService.createChat()
-	return res.status(200).json(chat)
-})
+router.post(
+	'/create',
+	async (req: Request<{}, {}, IChatNew>, res: Response) => {
+		const chat = await chatService.createChat(req.body.name)
+		return res.status(200).json(chat)
+	}
+)
 
 router.post('/', async (req: Request<{}, {}, IChatId>, res: Response) => {
 	const chat = await chatService.findChat(req.body.id)

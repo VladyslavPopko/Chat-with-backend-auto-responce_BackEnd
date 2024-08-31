@@ -1,10 +1,10 @@
 import { PrismaClient } from '@prisma/client'
+import cors from 'cors'
 import dotenv from 'dotenv'
 import express, { Request, Response } from 'express'
 import { chatRouter } from './chat/chat.controller'
 import { loginRouter } from './login/login.controller'
 import { messageRouter } from './message/message.controller'
-import { protect } from './middleware/auth.middleware'
 import { registerRouter } from './register/register.controller'
 import { userRouter } from './user/user.controller'
 
@@ -17,7 +17,15 @@ const app = express()
 async function main() {
 	app.use(express.json())
 
-	app.use('/user', protect, userRouter)
+	app.use(
+		cors({
+			origin: 'http://localhost:5173',
+			methods: ['GET', 'POST', 'PUT', 'DELETE'],
+			allowedHeaders: ['Content-Type', 'Authorization'],
+		})
+	)
+
+	app.use('/user', userRouter)
 	app.use('/message', messageRouter)
 	app.use('/chat', chatRouter)
 	app.use('/register', registerRouter)

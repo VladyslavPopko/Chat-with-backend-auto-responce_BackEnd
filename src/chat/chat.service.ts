@@ -19,9 +19,9 @@ export class ChatService {
 			},
 		})
 	}
-	createChat(): Promise<Chat> {
+	createChat(name: string): Promise<Chat> {
 		return this.prisma.chat.create({
-			data: {},
+			data: { name },
 		})
 	}
 	addUserToChat(

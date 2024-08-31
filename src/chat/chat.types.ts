@@ -11,3 +11,7 @@ export interface IChatUser extends IChatId {
 	chatid: string
 	userId: string
 }
+
+export interface IChatNew {
+	name: string
+}
