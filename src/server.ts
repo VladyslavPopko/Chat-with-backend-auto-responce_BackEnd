@@ -1,6 +1,7 @@
 import { PrismaClient } from '@prisma/client'
 import dotenv from 'dotenv'
 import express, { Request, Response } from 'express'
+import { messageRouter } from './message/message.controller'
 import { userRouter } from './user/user.controller'
 
 const prisma = new PrismaClient()
@@ -13,6 +14,7 @@ async function main() {
 	app.use(express.json())
 
 	app.use('/user', userRouter)
+	app.use('/message', messageRouter)
 
 	app.all('*', (req: Request, res: Response) => {
 		res.status(404).json({ message: 'Not Found' })

@@ -38,12 +38,12 @@ model Message {
   text            String
   senderId        String
   recipientId     String
-  chatId          String?
+  chatId          String
+  read            Boolean
   
   sender          User      @relation("SentMessages", fields: [senderId], references: [id])
   recipient       User      @relation("ReceivedMessages", fields: [recipientId], references: [id])
   chat            Chat?     @relation("ChatMessages", fields: [chatId], references: [id])
-  read            Boolean
   createdAt       DateTime  @default(now()) @map("created_at")
   updatedAt       DateTime  @updatedAt @map("updated_at")
 }
