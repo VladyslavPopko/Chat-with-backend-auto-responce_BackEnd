@@ -19,3 +19,7 @@ export interface IUpdateIsOnlineUser {
 export interface IUserId {
 	id: string
 }
+
+export interface IUserName {
+	name: string
+}

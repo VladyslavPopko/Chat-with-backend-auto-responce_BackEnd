@@ -15,3 +15,7 @@ export interface IUpdateMessage extends IMessage, IMessageId {}
 export interface IUpdateMessageRead extends IMessageId {
 	isRead: boolean
 }
+
+export interface ILastMessage {
+	id: string
+}

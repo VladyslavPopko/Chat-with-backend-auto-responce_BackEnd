@@ -40,4 +40,12 @@ export class MessageService {
 			},
 		})
 	}
+
+	findMessage(id: string): Promise<Message | null> {
+		return this.prisma.message.findFirst({
+			where: {
+				id: id,
+			},
+		})
+	}
 }

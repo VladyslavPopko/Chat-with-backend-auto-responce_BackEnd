@@ -43,5 +43,12 @@ router.delete(
 		return res.status(200).json(message)
 	}
 )
+router.post(
+	'/find',
+	async (req: Request<{}, {}, IMessageId>, res: Response) => {
+		const message = await messageService.findMessage(req.body.id)
+		return res.status(200).json(message)
+	}
+)
 
 export const messageRouter = router

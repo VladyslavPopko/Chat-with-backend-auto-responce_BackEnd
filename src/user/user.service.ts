@@ -83,4 +83,23 @@ export class UserService {
 			},
 		})
 	}
+
+	findUsers(name: string) {
+		return this.prisma.user.findMany({
+			where: {
+				name: {
+					contains: name,
+					mode: 'insensitive',
+				},
+			},
+			select: {
+				id: true,
+				avatar: true,
+				isOnline: true,
+				name: true,
+				surname: true,
+				email: true,
+			},
+		})
+	}
 }

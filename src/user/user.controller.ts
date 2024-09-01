@@ -1,6 +1,12 @@
 import { Request, Response, Router } from 'express'
 import { UserService } from './user.service'
-import { IUpdateIsOnlineUser, IUpdateUser, IUser, IUserId } from './user.types'
+import {
+	IUpdateIsOnlineUser,
+	IUpdateUser,
+	IUser,
+	IUserId,
+	IUserName,
+} from './user.types'
 
 const router = Router()
 
@@ -71,5 +77,12 @@ router.post('/find', async (req: Request<{}, {}, IUserId>, resp: Response) => {
 	const user = await userService.getUser(req.body.id)
 	return resp.status(200).json(user)
 })
+router.post(
+	'/findUsers',
+	async (req: Request<{}, {}, IUserName>, resp: Response) => {
+		const user = await userService.findUsers(req.body.name)
+		return resp.status(200).json(user)
+	}
+)
 
 export const userRouter = router
