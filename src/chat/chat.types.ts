@@ -8,10 +8,16 @@ export interface IAddUsersToChat {
 }
 
 export interface IChatUser extends IChatId {
-	chatid: string
+	chatId: string
 	userId: string
 }
 
 export interface IChatNew {
+	id: string
 	name: string
+}
+
+export interface IAddUser {
+	chatId: string
+	userId: string
 }
