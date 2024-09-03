@@ -29,7 +29,7 @@ export class RegisterService {
 		})
 	}
 	generateToken(id: string) {
-		const token = process.env.ACCESS_TOKEN
+		const token = 'aASdasjdsa33'
 		if (!token) {
 			return console.log('No access token!')
 		}

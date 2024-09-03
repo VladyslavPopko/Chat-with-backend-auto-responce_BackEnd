@@ -1,6 +1,7 @@
 import { PrismaClient } from '@prisma/client'
 import { NextFunction, Request, Response } from 'express'
 import jwt, { JwtPayload } from 'jsonwebtoken'
+import { ACCESS_TOKEN } from '../const'
 
 export const protect = async (
 	req: Request,
@@ -12,8 +13,8 @@ export const protect = async (
 	if (req.headers.authorization?.startsWith('Bearer')) {
 		token = req.headers.authorization.split(' ')[1]
 
-		if (process.env.ACCESS_TOKEN) {
-			const decoded = jwt.verify(token, process.env.ACCESS_TOKEN)
+		if (ACCESS_TOKEN) {
+			const decoded = jwt.verify(token, ACCESS_TOKEN)
 
 			const userFound = await prisma.user.findUnique({
 				where: {

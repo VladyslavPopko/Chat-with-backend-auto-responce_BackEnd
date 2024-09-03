@@ -1,10 +1,11 @@
 generator client {
   provider = "prisma-client-js"
+  binaryTargets = ["native", "debian-openssl-1.1.x"]
 }
 
 datasource db {
   provider = "mongodb"
-  url      = env("DATABASE_URL")
+  url      = "mongodb+srv://vladpopko:usxHPoY0rszIX3Ng@maindb.nk5mo.mongodb.net/mydatabase?retryWrites=true&w=majority" 
 }
 
 model User {
